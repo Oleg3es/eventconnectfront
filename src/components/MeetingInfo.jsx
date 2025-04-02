@@ -4,10 +4,10 @@ const MeetingInfo = () => {
   return (
     <Container>
       <div className="flex flex-col gap-4 items-center mt-10">
-        <h2 className="text-5xl font-bold text-center">
+        <h2 className="text-3xl lg:text-5xl font-bold text-center">
           Как проходит встреча?
         </h2>
-        <div className="flex flex-col gap-4 max-w-[600px] text-xl">
+        <div className="flex flex-col gap-4 max-w-[600px] lg:text-xl text-lg">
           <div className="flex gap-4">
             <span className="font-bold">18:40</span>
             <span>Сбор гостей</span>

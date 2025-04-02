@@ -17,41 +17,32 @@ import "swiper/css/navigation";
 
 const fetchEvents = async () => {
   try {
-    const response = await fetch(`${API_URL}/events/all`, {
-      method: 'GET',
+    const response = await axios.get(`${API_URL}/events/current-all`, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true',
-        'Cache-Control': 'no-cache'
+        'ngrok-skip-browser-warning': 'true'
       },
-      credentials: 'include',
-      mode: 'cors'
+      withCredentials: true
     });
-
-    if (!response.ok) {
-      const error = await response.text();
-      throw new Error(`HTTP ${response.status}: ${error}`);
-    }
-
-    return await response.json();
+    return response.data;
   } catch (error) {
     console.error('Fetch failed:', error);
-    throw new Error(`Network error: ${error.message}`);
+    throw error; 
   }
 };
 
 const Events = () => {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["events"],
+  const { data: currentEvents, isLoading: isCurrentLoading, error } = useQuery({
+    queryKey: ["events", "current"], 
     queryFn: fetchEvents,
   });
-  console.log(data);
-  if (isLoading) return <div>Загрузка...</div>;
+
+  console.log(currentEvents);
+  if (isCurrentLoading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка: {error.message}</div>;
   return (
     <Container>
-      <h1 className="font-bold text-center text-6xl mb-8">Следующие встречи</h1>
+      <h1 className="font-bold text-center lg:text-5xl mb-8 text-4xl mt-6">Следующие встречи</h1>
       <Swiper
         slidesPerView={3}
         spaceBetween={20}
@@ -69,8 +60,8 @@ const Events = () => {
           },
         }}
       >
-        {Array.isArray(data) &&
-          data.map((event) => (
+        {Array.isArray(currentEvents) &&
+          currentEvents.map((event) => (
             <SwiperSlide key={event.id}>
               <EventCard event={event} />
             </SwiperSlide>

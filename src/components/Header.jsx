@@ -4,9 +4,12 @@ const Header = () => {
   return (
     <Container>
       <div className="flex justify-between items-center mt-4">
-        <h1 className="text-4xl font-bold">
-          <Link to="/">Event Connect</Link>
-        </h1>
+        <Link to="/" >
+          <h1 className="lg:text-4xl text-2xl font-bold text-white px-7 py-1 font bg-[#5465ff]">
+            <div>Event</div>
+            <div>Connect</div>
+          </h1>
+        </Link>
       </div>
     </Container>
   );

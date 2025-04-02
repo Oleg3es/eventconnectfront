@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { data, useParams } from "react-router-dom";
 import Container from "../components/Container";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -8,12 +8,28 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const fetchEvent = async (id) => {
-  const response = await axios.get(`${API_URL}/events/${id}`);
+  const response = await axios.get(`${API_URL}/events/${id}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'ngrok-skip-browser-warning': 'true',
+      'Cache-Control': 'no-cache'
+    },
+    withCredentials: true // Для отправки кук (если нужна аутентификация)
+  });
   return response.data;
 };
 
 const registerForEvent = async (data) => {
-  const response = await axios.post(`${API_URL}/register-event`, data);
+  const response = await axios.post(`${API_URL}/register-event`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'ngrok-skip-browser-warning': 'true',
+      'Cache-Control': 'no-cache'
+    },
+    withCredentials: true // Аналог credentials: 'include' в fetch
+  });
   return response.data;
 };
 
@@ -95,13 +111,17 @@ const EventRegistration = () => {
           }}
         >
           <h2 className="text-3xl">
-            <span>{data.title}, </span>
             <span>{data.location}</span>
+            <br />
+            {/* <span>{data.title}, </span> */}
           </h2>
           <p className="text-3xl">
-            Дата: {new Date(data.date).toLocaleDateString("ru-RU")}
+            {new Date(data.date).toLocaleDateString("ru-RU", {
+              day: 'numeric',
+              month: 'long',
+            })}, {data.time}
           </p>
-          <p className="text-3xl">Описание: {data.description}</p>
+          <p className="text-3xl">{data.title}</p>
         </div>
       </div>
 

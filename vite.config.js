@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    port: 3000, // Меняем порт на 3000
-    open: true,  // Автоматически открывать браузер
+    port: 3000, 
+    open: true,  
+    strictPort: true
   }
 })
