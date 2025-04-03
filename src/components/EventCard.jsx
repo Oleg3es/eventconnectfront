@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 const EventCard = ({ event }) => {
   const navigate = useNavigate();
-  const dateObj = new Date(event.date);
+  const dateObj = new Date(event.current_date);
   const day = dateObj.getDate();
   const month = dateObj.toLocaleString("ru-RU", { month: "long" });
   const weekday = dateObj.toLocaleString("ru-RU", { weekday: "long" });

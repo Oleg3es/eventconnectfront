@@ -1,11 +1,10 @@
 import React from 'react';
 
 const EventCardPast = ({ event }) => {
-    const dateObj = new Date(event.date);
+    const dateObj = new Date(event.current_date);
     const day = dateObj.getDate();
     const month = dateObj.toLocaleString("ru-RU", { month: "long" });
     const weekday = dateObj.toLocaleString("ru-RU", { weekday: "long" });
-    console.log("event")
 
     return (
         <div className="flex flex-col gap-4 border-[3px] border-purple-900 p-4 items-center ">

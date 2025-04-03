@@ -12,6 +12,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import Home from "./pages/Home.jsx";
 import EventRegistration from "./pages/EventRegistration.jsx";
+import EventSpeaker from "./pages/EventSpeaker.jsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/event/:id",
         element: <EventRegistration />,
+      },
+      {
+        path: "/pitches-requests",
+        element: <EventSpeaker />,
       },
     ],
   },

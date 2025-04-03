@@ -41,7 +41,7 @@ const EventsPast = () => {
     return (
         <Container>
             <h1 className="font-bold text-center lg:text-5xl mb-8 text-4xl mt-6">Прошедшие встречи</h1>
-            <div className='w-full h-auto grid grid-cols-1 md:grid-cols-3 gap-x-5 gap-y-5'>
+            <div className='w-full h-auto grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-5'>
                 {Array.isArray(pastEvents) &&
                     pastEvents.map(event => (
                         <EventCardPast
