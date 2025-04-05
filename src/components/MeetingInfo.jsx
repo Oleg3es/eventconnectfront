@@ -1,9 +1,24 @@
 import Container from "./Container";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const MeetingInfo = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash === '#meetInfo') {
+      const element = document.getElementById('meetInfo');
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      }
+    }
+  }, [hash]); 
+
   return (
     <Container>
-      <div className="flex flex-col gap-4 items-center mt-10">
+      <div id="meetInfo" className="flex flex-col gap-4 items-center mt-10">
         <h2 className="text-3xl lg:text-5xl font-bold text-center">
           Как проходит встреча?
         </h2>

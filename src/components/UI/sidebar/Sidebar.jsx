@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { API_URL } from '../../../utils/consts'
+import { useNavigate } from 'react-router-dom'
 
 const fatchFirstEvent = async () => {
     try {
@@ -22,6 +23,8 @@ const fatchFirstEvent = async () => {
 }
 
 const Sidebar = ({ active, setActive }) => {
+    const navigate = useNavigate();
+
     const rootClasses = [classes.sidebar]
     if (active) {
         rootClasses.push(classes.active)
@@ -37,13 +40,21 @@ const Sidebar = ({ active, setActive }) => {
         queryFn: fatchFirstEvent
     });
 
+    const handleRegister = () => {
+        navigate(`/event/${firstEvent.id}`);
+    };
+
+    const handleClose = () => {
+        setActive(false)
+    }
+
     if (isLoading) return <div>Загрузка даты...</div>;
     if (isError) return <div>Ошибка: {error.message}</div>;
     if (!firstEvent?.current_date) return <div>Дата не доступна</div>;
 
     const dateObj = new Date(firstEvent.current_date);
-    const day = dateObj.getDate().toString().padStart(2, '0');;
-    const month = dateObj.getMonth().toString().padStart(2, '0'); + 1;
+    const day = dateObj.getDate().toString().padStart(2, '0');
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
 
     console.log(firstEvent)
 
@@ -58,13 +69,17 @@ const Sidebar = ({ active, setActive }) => {
                     {`${day}.${month}`}
                 </div>
                 <div className={classes.sidebarLinkList}>
-                    <Link to="/event/:id">
+                    <button
+                        className={classes.sidebarButton}
+                        onClick={handleRegister}>
                         Зарегистрироваться
-                    </Link>
-                    <Link to="/">
+                    </button>
+                    {/* <Link to="/">
                         Календарь встреч
-                    </Link>
-                    <a href="#">
+                    </Link> */}
+                    <a
+                        onClick={handleClose}
+                        href="#meetInfo">
                         Как проходят встречи
                     </a>
                 </div>

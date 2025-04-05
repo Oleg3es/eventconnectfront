@@ -82,3 +82,8 @@
     color: #5465ff;
     row-gap: 20px;
 }
+
+.sidebarButton {
+    align-self: flex-start;
+    cursor: pointer;
+}

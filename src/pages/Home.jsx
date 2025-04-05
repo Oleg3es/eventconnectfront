@@ -6,6 +6,7 @@ import Sidebar from "../components/UI/sidebar/Sidebar";
 import ButtonBurger from "../components/UI/button/ButtonBurger";
 import Header from "../components/Header";
 import EventsPast from "../components/EventsPast";
+import Actions from "../components/Actions";
 
 const Home = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -20,6 +21,7 @@ const Home = () => {
       <Events />
       <AboutUs />
       <MeetingInfo />
+      <Actions />
       <EventsPast />
     </div>
   );

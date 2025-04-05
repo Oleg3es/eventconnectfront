@@ -15,26 +15,31 @@ import EventRegistration from "./pages/EventRegistration.jsx";
 import EventSpeaker from "./pages/EventSpeaker.jsx";
 const queryClient = new QueryClient();
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/event/:id",
+          element: <EventRegistration />,
+        },
+        {
+          path: "/pitches-requests",
+          element: <EventSpeaker />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/event/:id",
-        element: <EventRegistration />,
-      },
-      {
-        path: "/pitches-requests",
-        element: <EventSpeaker />,
-      },
-    ],
-  },
-]);
+    scrollRestoration: "manual", // Отключаем автоскролл
+  }
+);
 
 createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>

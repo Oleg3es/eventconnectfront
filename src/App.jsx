@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Header from "./components/Header";
-import ButtonBurger from "./components/UI/button/ButtonBurger";
-import Sidebar from "./components/UI/sidebar/Sidebar";
+import useScrollToTop from "./components/hooks/useScrollToTop";
 
 function App() {
+  useScrollToTop();
 
   return (
     <>

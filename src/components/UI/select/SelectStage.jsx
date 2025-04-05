@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SelectStage = ({ option, value = '', onChange, defaultValue }) => {
+const SelectStage = ({ option, value, onChange, defaultValue }) => {
     console.log(option)
     return (
         <div>

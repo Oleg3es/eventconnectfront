@@ -15,7 +15,7 @@ const fetchEvent = async (id) => {
       'ngrok-skip-browser-warning': 'true',
       'Cache-Control': 'no-cache'
     },
-    withCredentials: true // Для отправки кук (если нужна аутентификация)
+    withCredentials: true
   });
   return response.data;
 };
@@ -28,7 +28,7 @@ const registerForEvent = async (data) => {
       'ngrok-skip-browser-warning': 'true',
       'Cache-Control': 'no-cache'
     },
-    withCredentials: true // Аналог credentials: 'include' в fetch
+    withCredentials: true
   });
   return response.data;
 };
@@ -116,10 +116,12 @@ const EventRegistration = () => {
             {/* <span>{data.title}, </span> */}
           </h2>
           <p className="text-3xl">
-            {new Date(data.date).toLocaleDateString("ru-RU", {
+            {new Date(data.date.replace(' ', 'T')).toLocaleString("ru-RU", {
               day: 'numeric',
               month: 'long',
-            })}, {data.time}
+              hour: '2-digit',
+              minute: '2-digit'
+            })}
           </p>
           <p className="text-3xl">{data.title}</p>
         </div>
