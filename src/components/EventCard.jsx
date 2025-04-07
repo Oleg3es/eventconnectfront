@@ -3,9 +3,17 @@ import { useNavigate } from "react-router-dom";
 const EventCard = ({ event }) => {
   const navigate = useNavigate();
   const dateObj = new Date(event.current_date);
-  const day = dateObj.getDate();
-  const month = dateObj.toLocaleString("ru-RU", { month: "long" });
-  const weekday = dateObj.toLocaleString("ru-RU", { weekday: "long" });
+  
+  // Используем UTC-методы или явно указываем временную зону
+  const day = dateObj.getUTCDate();
+  const month = dateObj.toLocaleString("ru-RU", { 
+    month: "long", 
+    timeZone: "UTC" 
+  });
+  const weekday = dateObj.toLocaleString("ru-RU", { 
+    weekday: "long", 
+    timeZone: "UTC" 
+  });
 
   const handleRegister = () => {
     navigate(`/event/${event.id}`);

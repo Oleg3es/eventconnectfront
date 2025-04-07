@@ -116,7 +116,7 @@ const EventRegistration = () => {
             {/* <span>{data.title}, </span> */}
           </h2>
           <p className="text-3xl">
-            {new Date(data.date.replace(' ', 'T')).toLocaleString("ru-RU", {
+            {new Date(data.current_date.replace(' ', 'T')).toLocaleString("ru-RU", {
               day: 'numeric',
               month: 'long',
               hour: '2-digit',
